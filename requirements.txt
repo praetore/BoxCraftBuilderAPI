@@ -10,3 +10,4 @@ mimerender==0.5.4
 python-dateutil==2.4.0
 python-mimeparse==0.1.4
 six==1.9.0
+uwsgi==2.0.9

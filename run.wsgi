@@ -2,4 +2,5 @@ from app import app
 
 __author__ = 'darryl'
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run()
