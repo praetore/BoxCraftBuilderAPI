@@ -1,73 +1,83 @@
-import datetime
 from app import db
 
 __author__ = 'darryl'
 
 
-class Product(db.Document):
-    created_at = db.DateTimeField(default=datetime.datetime.now)
-    name = db.StringField(max_length=255)
-    price = db.DecimalField()
-    manufacturer = db.StringField(max_length=255)
-    seller = db.StringField(max_length=255)
-    link = db.StringField(max_length=255)
-    img_link = db.StringField(max_length=255)
+class Product(db.Model):
+    __abstract__ = True
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    price = db.Column(db.Float)
+    manufacturer = db.Column(db.String(255))
+    supplier = db.Column(db.String(255))
+    link = db.Column(db.String(255))
+    img_link = db.Column(db.String(255))
+    product_type = db.Column(db.String(255))
 
 
 class Motherboard(Product):
-    formfactor = db.StringField(max_length=25)
-    memory_slots = db.IntField()
-    socket = db.StringField(max_length=25)
-    max_ram_supported = db.StringField(max_length=25)
-    usb_slots = db.IntField()
-    sata_slots = db.IntField()
+    __tablename__ = 'moederborden'
+    socket = db.Column(db.String(25))
+    formfactor = db.Column(db.String(25))
+    mem_slots = db.Column(db.Integer)
+    mem_max = db.Column(db.String(25))
+    sata_slots = db.Column(db.Integer)
+    usb_slots = db.Column(db.Integer)
 
 
 class Gpu(Product):
-    chipset = db.StringField(max_length=255)
-    memory_type = db.StringField(max_length=25)
-    memory_amount = db.IntField()
-    slot_space = db.IntField()
+    __tablename__ = 'videokaarten'
+    chipset = db.Column(db.String(255))
+    mem_type = db.Column(db.String(25))
+    mem_amount = db.Column(db.Integer)
+    slots = db.Column(db.Integer)
 
 
 class Cpu(Product):
-    socket = db.StringField(max_length=25)
-    speed = db.DecimalField()
-    cores = db.IntField()
+    __tablename__ = 'processoren'
+    socket = db.Column(db.String(25))
+    speed = db.Column(db.Float)
+    cores = db.Column(db.Integer)
 
 
 class Memory(Product):
-    memory_type = db.StringField(max_length=25)
-    memory_amount = db.IntField()
-    memory_slots = db.IntField()
+    __tablename__ = 'geheugen'
+    type = db.Column(db.String(25))
+    amount = db.Column(db.Integer)
+    slots = db.Column(db.Integer)
 
 
 class Psu(Product):
-    power = db.IntField()
-    formfactor = db.StringField(max_length=25)
+    __tablename__ = 'voedingen'
+    formfactor = db.Column(db.String(25))
+    power = db.Column(db.Integer)
 
 
 class Hdd(Product):
-    physical_size = db.StringField(max_length=25)
-    capacity = db.StringField(max_length=25)
-    interface = db.StringField(max_length=25)
-    type = db.StringField(max_length=25)
+    __tablename__ = 'harddisks'
+    physical_size = db.Column(db.String(25))
+    capacity = db.Column(db.String(25))
+    interface = db.Column(db.String(25))
+    type = db.Column(db.String(25))
 
 
 class Case(Product):
-    external_35 = db.IntField()
-    color = db.StringField(max_length=25)
-    internal_35 = db.IntField()
-    internal_25 = db.IntField()
-    formfactor_mobo = db.StringField(max_length=25)
-    formfactor_psu = db.StringField(max_length=25)
+    __tablename__ = 'behuizingen'
+    external_35 = db.Column(db.Integer)
+    color = db.Column(db.String(25))
+    internal_35 = db.Column(db.Integer)
+    internal_25 = db.Column(db.Integer)
+    external_525 = db.Column(db.Integer)
+    formfactor_mobo = db.Column(db.String(25))
+    formfactor_psu = db.Column(db.String(25))
 
 
-class Configuration(db.Document):
-    cpu = db.StringField(max_length=50)
-    gpu = db.StringField(max_length=50)
-    case = db.StringField(max_length=50)
-    hdd = db.StringField(max_length=50)
-    psu = db.StringField(max_length=50)
-    mem = db.StringField(max_length=50)
-    mobo = db.StringField(max_length=50)
+class Configuraties(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    cpu = db.Column(db.String(50))
+    gpu = db.Column(db.String(50))
+    case = db.Column(db.String(50))
+    hdd = db.Column(db.String(50))
+    psu = db.Column(db.String(50))
+    mem = db.Column(db.String(50))
+    mobo = db.Column(db.String(50))
