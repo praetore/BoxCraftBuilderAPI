@@ -1,6 +1,5 @@
-from app import app
+#!/usr/bin/env python
 
 __author__ = 'darryl'
 
-if __name__ == '__main__':
-    app.run()
+from run import app as application
