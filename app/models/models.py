@@ -73,7 +73,8 @@ class Case(Product):
     formfactor_psu = db.Column(db.String(25))
 
 
-class Configuraties(db.Model):
+class Configs(db.Model):
+    __tablename__ = 'configuraties'
     id = db.Column(db.Integer, primary_key=True)
     cpu = db.Column(db.String(50))
     gpu = db.Column(db.String(50))
