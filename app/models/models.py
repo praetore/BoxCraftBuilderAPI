@@ -13,6 +13,7 @@ class Product(db.Model):
     link = db.Column(db.String(255))
     img_link = db.Column(db.String(255))
     product_type = db.Column(db.String(255))
+    hash = db.Column(db.String(50))
 
 
 class Motherboard(Product):
