@@ -44,7 +44,7 @@ class Cpu(Product):
 class Memory(Product):
     __tablename__ = 'geheugen'
     type = db.Column(db.String(25))
-    amount = db.Column(db.Integer)
+    amount = db.Column(db.String(25))
     slots = db.Column(db.Integer)
 
 
